@@ -1,0 +1,68 @@
+class ArrayStack{
+
+  private int lista [];
+  private int nroElementos;
+  private int tamStack;
+
+  public ArrayStack(){
+    nroElementos=0;
+    tamStack=10;
+    lista = new int[tamStack];
+  }
+
+  public void push(int element){
+    if(nroElementos==tamStack){
+      int aux[] = new int[tamStack*2];
+      for (int i=0; i<tamStack;i++)
+        aux[i]=lista[i];
+      lista=aux;
+      tamStack=tamStack*2;
+    }
+    lista[nroElementos]=element;
+    nroElementos++;
+  }
+
+  public int pop(){
+    if(nroElementos==0)
+      return 0;
+    else{
+      int valorDeRetorno;
+      valorDeRetorno=lista[nroElementos-1];
+
+      if((tamStack>10) && (nroElementos < (tamStack/2))){
+        int aux[] = new int[tamStack>>1];
+        for(int i=0; i<nroElementos;i++)
+          aux[i]=lista[i];
+        lista=aux;        
+        tamStack>>=1;
+      }
+      nroElementos--;
+      return valorDeRetorno;
+    }
+
+  }
+
+  public int top(){
+    if(nroElementos==0)
+      return 0;
+    else{
+      return lista[nroElementos-1];
+    }
+  }
+  public int size(){
+    return nroElementos;
+  }
+  public boolean isEmpty(){
+    return (nroElementos==0);
+  }
+  public void clear(){
+    tamStack=10;
+    nroElementos=0;
+    lista=new int[tamStack];
+  }
+  public int getTamStack(){
+    return tamStack;
+  }
+
+
+}
